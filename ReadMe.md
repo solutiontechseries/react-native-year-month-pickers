@@ -5,8 +5,8 @@ This React-Native component library provides a seamless month and year picker fo
 ## Examples
 
 <p align="left">
-  <img width=220 title="Screenshot-1" src="https://github.com/solutiontechseries/react-native-year-month-picker/blob/master/assets/screenshot-1.png">
-  <img width=220 title="Screenshot-2" src="https://github.com/solutiontechseries/react-native-year-month-picker/blob/master/assets/screenshot-2.png">
+  <img width=220 title="Screenshot-1" src="https://github.com/solutiontechseries/react-native-year-month-pickers/blob/master/assets/screenshot-1.png">
+  <img width=220 title="Screenshot-2" src="https://github.com/solutiontechseries/react-native-year-month-pickers/blob/master/assets/screenshot-2.png">
 </p>
 
 # Install
