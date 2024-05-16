@@ -1,0 +1,26 @@
+{
+  "name": "react-native-year-month-pickers",
+  "version": "1.0.5",
+  "description": "This React-Native component library provides a seamless month and year picker for both Android and iOS platforms.",
+  "main": "index.tsx",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/solutiontechseries/react-native-year-month-pickers.git"
+  },
+  "keywords": [
+    "option-picker",
+    "selected-option",
+    "list-picker",
+    "react-native",
+    "react-native-seleted-options-pickers"
+  ],
+  "author": "Pankaj Kumar Prajapati",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/solutiontechseries/react-native-year-month-pickers/issues"
+  },
+  "homepage": "https://github.com/solutiontechseries/react-native-year-month-pickers#readme"
+}
