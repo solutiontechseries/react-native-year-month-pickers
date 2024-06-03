@@ -47,7 +47,7 @@ const [showPicker, setShowPicker] = useState(false);
 const [monthYear, setMonthYear] = useState("");
 ```
 
-Usage of the single value picker
+Usage of the Month and Year value picker
 
 ```javascript
 <View>
