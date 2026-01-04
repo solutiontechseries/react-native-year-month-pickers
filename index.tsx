@@ -1,4 +1,11 @@
-import React, {useEffect, useState} from 'react';
+/*
+ @ 𝔸𝕦𝕥𝕙𝕠𝕣: ℙ𝕒𝕟𝕜𝕒𝕛 𝕂𝕦𝕞𝕒𝕣 ℙ𝕣𝕒𝕛𝕒𝕡𝕒𝕥𝕚
+ @ 𝔽𝕚𝕝𝕖 ℕ𝕒𝕞𝕖: index.tsx
+ @ ℂ𝕠𝕡𝕪𝕣𝕚𝕘𝕙𝕥 (𝕔) 2026 𝕊𝕠𝕝𝕦𝕥𝕚𝕠𝕟𝕋𝕖𝕔𝕙𝕊𝕖𝕣𝕚𝕖𝕤
+ @ ℂ𝕣𝕖𝕒𝕥𝕖𝕕 𝕆𝕟: Sun Jan 04 2026
+ */
+
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -8,20 +15,20 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from 'react-native';
-import SearchBar from './components/search-bar';
-import {IMAGES} from './assets';
-import Buttons from './components/button';
-import {PickerProps} from './utils/props-type';
-import {COLORS} from './utils/values';
+} from "react-native";
+import SearchBar from "./components/search-bar";
+import { IMAGES } from "./assets";
+import Buttons from "./components/button";
+import { PickerProps } from "./utils/props-type";
+import { COLORS } from "./utils/values";
 
 const MultipleSelection: React.FC<PickerProps> = ({
   show,
   type,
-  enableSearch=true,
-  searchPlaceholder='Search here',
+  enableSearch = true,
+  searchPlaceholder = "Search here",
   pickerTitle,
-  emptyTitle='No Record(s) Found',
+  emptyTitle = "No Record(s) Found",
   data,
   value,
   rowTitleKey,
@@ -33,21 +40,21 @@ const MultipleSelection: React.FC<PickerProps> = ({
 }) => {
   const [selectedData, setSelectedData] = useState<any>([]);
   const [searchData, setSearchData] = useState([]);
-  const [searchText, setSearchText] = useState<string>('');
+  const [searchText, setSearchText] = useState<string>("");
 
   useEffect(() => {
-    if (value !== '' && show && type === 'single') {
+    if (value !== "" && show && type === "single") {
       setSelectedData([value]);
     } else if (
-      value !== '' &&
+      value !== "" &&
       show &&
-      type === 'multiple' &&
+      type === "multiple" &&
       value?.length > 0
     ) {
       setSelectedData(
-        data?.filter(e =>
-          value?.some(item => item[rowUniqueKey] === e[rowUniqueKey]),
-        ),
+        data?.filter((e) =>
+          value?.some((item) => item[rowUniqueKey] === e[rowUniqueKey])
+        )
       );
     }
   }, [show, value]);
@@ -55,7 +62,7 @@ const MultipleSelection: React.FC<PickerProps> = ({
   return React.useMemo(() => {
     const onChangeText = (txt: string) => {
       setSearchData(
-        data.filter(item => {
+        data.filter((item) => {
           if (extraTitleKey) {
             return (
               item[rowTitleKey]?.toLowerCase()?.includes(txt?.toLowerCase()) ||
@@ -68,7 +75,7 @@ const MultipleSelection: React.FC<PickerProps> = ({
               ?.toLowerCase()
               ?.includes(txt?.toLowerCase());
           }
-        }),
+        })
       );
       setSearchText(txt);
     };
@@ -78,11 +85,11 @@ const MultipleSelection: React.FC<PickerProps> = ({
     };
     const onItemPress = (item: any, isAdded: boolean) => {
       let d = [...selectedData];
-      if (type === 'single') {
+      if (type === "single") {
         setSelectedData([item]);
       } else {
         if (isAdded) {
-          d = d.filter(el => el[rowUniqueKey] !== item[rowUniqueKey]);
+          d = d.filter((el) => el[rowUniqueKey] !== item[rowUniqueKey]);
         } else {
           d.push(item);
         }
@@ -92,38 +99,44 @@ const MultipleSelection: React.FC<PickerProps> = ({
     return (
       <Modal
         visible={show}
-        animationType={'slide'}
+        animationType={"slide"}
         transparent={true}
-        onRequestClose={onClose}>
+        onRequestClose={onClose}
+      >
         <SafeAreaView style={styles.safearea}>
           <View style={styles.container}>
             <View style={styles.innerContainer}>
               <Text style={styles.pickerTitleText}>{pickerTitle}</Text>
-              {enableSearch&&<SearchBar
-                value={searchText}
-                placeholder={searchPlaceholder}
-                onChangeText={onChangeText}
-                onClear={() => setSearchText('')}
-              />}
- <View style={styles.devider} />
+              {enableSearch && (
+                <SearchBar
+                  value={searchText}
+                  placeholder={searchPlaceholder}
+                  onChangeText={onChangeText}
+                  onClear={() => setSearchText("")}
+                />
+              )}
+              <View style={styles.devider} />
               <View style={styles.listView}>
                 <FlatList
-                  data={searchText === '' ? data : searchData}
-                  ListEmptyComponent={()=>{
-                    return <View style={styles.emptyView}>
-                      <Text style={styles.emptyTitleText}>{emptyTitle}</Text>
-                    </View>
+                  data={searchText === "" ? data : searchData}
+                  ListEmptyComponent={() => {
+                    return (
+                      <View style={styles.emptyView}>
+                        <Text style={styles.emptyTitleText}>{emptyTitle}</Text>
+                      </View>
+                    );
                   }}
-                  renderItem={({item}) => {
+                  renderItem={({ item }) => {
                     const active = selectedData?.some(
-                      e => e[rowUniqueKey] === item[rowUniqueKey],
+                      (e) => e[rowUniqueKey] === item[rowUniqueKey]
                     );
                     return (
                       <React.Fragment key={item[rowUniqueKey]}>
                         <TouchableOpacity
                           activeOpacity={0.65}
                           onPress={() => onItemPress(item, active)}
-                          style={styles.rowView}>
+                          style={styles.rowView}
+                        >
                           <Image
                             source={active ? IMAGES.CHECK : IMAGES.UNCHECK}
                             style={[
@@ -146,7 +159,7 @@ const MultipleSelection: React.FC<PickerProps> = ({
                       </React.Fragment>
                     );
                   }}
-                  keyExtractor={item => item[rowUniqueKey]}
+                  keyExtractor={(item) => item[rowUniqueKey]}
                 />
               </View>
             </View>
@@ -155,8 +168,8 @@ const MultipleSelection: React.FC<PickerProps> = ({
           <View style={styles.devider} />
 
           <View style={styles.buttonsRow}>
-            <Buttons title={'Cancel'} onPress={onClose} type={'cancel'} />
-            <Buttons title={'Done'} onPress={onDonePress} type={'done'} />
+            <Buttons title={"Cancel"} onPress={onClose} type={"cancel"} />
+            <Buttons title={"Done"} onPress={onDonePress} type={"done"} />
           </View>
         </SafeAreaView>
         <SafeAreaView style={styles.bottomSafearea} />
@@ -180,20 +193,20 @@ const MultipleSelection: React.FC<PickerProps> = ({
 };
 
 const styles = StyleSheet.create({
-  emptyView:{
-    flex:1,
-    justifyContent:'center',
-    alignItems: 'center',
-    marginTop: 110
+  emptyView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 110,
   },
-  emptyTitleText:{
+  emptyTitleText: {
     fontSize: 20,
-    fontWeight: '500',
-    textAlign: 'center',
+    fontWeight: "500",
+    textAlign: "center",
     color: COLORS.TITLE,
   },
   rowTitleText: {
-    fontWeight: '400',
+    fontWeight: "400",
     fontSize: 17,
     color: COLORS.TITLE,
     marginLeft: 15,
@@ -202,49 +215,49 @@ const styles = StyleSheet.create({
     height: 22,
     width: 22,
   },
-  listView: {marginBottom: 110},
+  listView: { marginBottom: 110 },
   rowView: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
     marginHorizontal: 10,
     marginVertical: 5,
     paddingVertical: 15,
   },
   devider: {
     height: 1,
-    backgroundColor: '#d2d2d2',
+    backgroundColor: "#d2d2d2",
   },
   buttonsRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     padding: 15,
-    justifyContent: 'space-between',
-    backgroundColor: 'white',
+    justifyContent: "space-between",
+    backgroundColor: "white",
   },
   pickerTitleText: {
     fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
+    fontWeight: "bold",
+    textAlign: "center",
     color: COLORS.PRIMARY,
     marginBottom: 15,
   },
   safearea: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     flex: 1,
   },
   bottomSafearea: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     flex: 0,
   },
   container: {
     flex: 1,
-    backgroundColor: 'rgba(0,0,0,0.65)',
-    justifyContent: 'flex-end',
+    backgroundColor: "rgba(0,0,0,0.65)",
+    justifyContent: "flex-end",
   },
   innerContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     paddingVertical: 15,
     paddingHorizontal: 5,
-    maxHeight: '80%',
+    maxHeight: "80%",
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
   },

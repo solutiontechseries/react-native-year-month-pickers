@@ -1,17 +1,24 @@
-import React from 'react';
+/*
+ @ 𝔸𝕦𝕥𝕙𝕠𝕣: ℙ𝕒𝕟𝕜𝕒𝕛 𝕂𝕦𝕞𝕒𝕣 ℙ𝕣𝕒𝕛𝕒𝕡𝕒𝕥𝕚
+ @ 𝔽𝕚𝕝𝕖 ℕ𝕒𝕞𝕖: props-type.ts
+ @ ℂ𝕠𝕡𝕪𝕣𝕚𝕘𝕙𝕥 (𝕔) 2026 𝕊𝕠𝕝𝕦𝕥𝕚𝕠𝕟𝕋𝕖𝕔𝕙𝕊𝕖𝕣𝕚𝕖𝕤
+ @ ℂ𝕣𝕖𝕒𝕥𝕖𝕕 𝕆𝕟: Sun Jan 04 2026
+ */
+import React from "react";
 import {
   Image,
   StyleSheet,
   TextInput,
   TouchableOpacity,
   View,
-} from 'react-native';
+} from "react-native";
 
-import {IMAGES} from '../assets';
-import {SearchBarProps} from '../utils/props-type';
+import { IMAGES } from "../assets";
+import { SearchBarProps } from "../utils/props-type";
 
 const SearchBar: React.FC<SearchBarProps> = ({
-  value,placeholder,
+  value,
+  placeholder,
   onChangeText,
   onClear,
 }) => {
@@ -24,11 +31,12 @@ const SearchBar: React.FC<SearchBarProps> = ({
         style={styles.inputView}
         placeholder={placeholder}
       />
-      {value !== '' && (
+      {value !== "" && (
         <TouchableOpacity
           activeOpacity={0.65}
           onPress={onClear}
-          style={styles.closeButtonView}>
+          style={styles.closeButtonView}
+        >
           <Image style={styles.closeIcon} source={IMAGES.CLOSE} />
         </TouchableOpacity>
       )}
@@ -41,36 +49,36 @@ export default SearchBar;
 const styles = StyleSheet.create({
   closeButtonView: {
     width: 35,
-    height: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
+    height: "100%",
+    justifyContent: "center",
+    alignItems: "center",
   },
   closeIcon: {
     height: 16,
     width: 16,
-    tintColor: '#222222',
+    tintColor: "#222222",
   },
   searchIcon: {
     height: 20,
     width: 20,
-    tintColor: '#b1b1b1',
+    tintColor: "#b1b1b1",
   },
   inputView: {
     flex: 1,
     fontSize: 16,
-    fontWeight: '500',
-    color: '#222222',
+    fontWeight: "500",
+    color: "#222222",
     paddingHorizontal: 15,
   },
   inputOuterView: {
     height: 48,
     borderWidth: 1,
     borderRadius: 6,
-    borderColor: '#b1b1b1',
+    borderColor: "#b1b1b1",
     margin: 15,
     marginHorizontal: 10,
     paddingLeft: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
 });
